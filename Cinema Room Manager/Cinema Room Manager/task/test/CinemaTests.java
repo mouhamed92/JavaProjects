@@ -6,54 +6,103 @@ import org.hyperskill.hstest.testing.TestedProgram;
 public class CinemaTests extends StageTest<String> {
 
     @DynamicTestingMethod
-    CheckResult test() {
+    CheckResult test1_testOutput() {
 
         TestedProgram program = new TestedProgram();
-        String output = program.start().trim();
+        String output = program.start();
 
-        String[] splittedOutput = output.split("\n");
-
-        if (splittedOutput.length != 9) {
-            return CheckResult.wrong("Expected 9 lines in the output!");
+        if (!output.toLowerCase().contains("enter the number of rows")) {
+            return CheckResult.wrong("At the beginning your program should ask for entering the number of rows.\n" +
+                "Your output should contain 'Enter the number of rows:'");
         }
 
-        String firstLine = splittedOutput[0];
-        if (!firstLine.equals("Cinema:")) {
-            return CheckResult.wrong("The first line should be 'Cinema:'");
+        output = program.execute("4");
+
+        if (!output.toLowerCase().contains("enter the number of seats in each row")) {
+            return CheckResult.wrong("After entering the number of rows your program should ask for entering" +
+                " the number of seats in each row.\n" +
+                "Your output should contain 'Enter the number of seats in each row'");
         }
 
-        String secondLine = splittedOutput[1].trim();
+        output = program.execute("5");
 
-        if (!secondLine.equals("1 2 3 4 5 6 7 8")) {
-            return CheckResult.wrong("The second line should be \"  1 2 3 4 5 6 7 8\"");
+        if (!output.toLowerCase().contains("total income:")) {
+            return CheckResult.wrong("After entering the number of seats in each row your program should print total income.\n" +
+                "Your output should contain 'Total income:'");
         }
 
-        for (int i = 2; i < 9; i++) {
+        if (!output.contains("$200")) {
+            return CheckResult.wrong("You miscalculated the income.\nCorrect one is $200");
+        }
 
-            String errorMessage = "The ";
-            if (i == 2) {
-                errorMessage += "third ";
-            } else {
-                errorMessage += i + "th ";
-            }
+        return CheckResult.correct();
+    }
 
-            errorMessage += "line ";
+    @DynamicTestingMethod
+    CheckResult test2_testIncomeCalculating() {
 
-            if (!splittedOutput[i].contains("" + (i - 1))) {
+        TestedProgram program = new TestedProgram();
+        program.start();
 
-                errorMessage += "should start with \"" + (i - 1) + "\"";
+        String output = program.execute("8\n9");
 
-                return CheckResult.wrong(errorMessage);
-            }
+        if (!output.contains("$648")) {
+            return CheckResult.wrong("You miscalculated the income.\nCorrect one is $648");
+        }
 
-            String line = splittedOutput[i].replace("" + (i - 1), "").trim();
+        program.stop();
 
-            if (!line.equals("S S S S S S S S")) {
+        program = new TestedProgram();
+        program.start();
 
-                errorMessage += "should be \"" + (i - 1) + " S S S S S S S S\"";
+        output = program.execute("9\n7");
 
-                return CheckResult.wrong(errorMessage);
-            }
+        if (!output.contains("$560")) {
+            return CheckResult.wrong("You miscalculated the income.\nCorrect one is $560");
+        }
+
+        program.stop();
+
+        program = new TestedProgram();
+        program.start();
+
+        output = program.execute("7\n9");
+
+        if (!output.contains("$558")) {
+            return CheckResult.wrong("You miscalculated the income.\nCorrect one is $558");
+        }
+
+        program.stop();
+
+        program = new TestedProgram();
+        program.start();
+
+        output = program.execute("1\n1");
+
+        if (!output.contains("$10")) {
+            return CheckResult.wrong("You miscalculated the income.\nCorrect one is $10");
+        }
+
+        program.stop();
+
+        program = new TestedProgram();
+        program.start();
+
+        output = program.execute("3\n3");
+
+        if (!output.contains("$90")) {
+            return CheckResult.wrong("You miscalculated the income.\nCorrect one is $90");
+        }
+
+        program.stop();
+
+        program = new TestedProgram();
+        program.start();
+
+        output = program.execute("8\n8");
+
+        if (!output.contains("$576")) {
+            return CheckResult.wrong("You miscalculated the income.\nCorrect one is $576");
         }
 
         return CheckResult.correct();
