@@ -18,7 +18,7 @@ public class Cinema {
         int first_half = 0;
         int last_half = 0 ;
         int total_seats = 0 ;
-
+        int ticket_price =0  ;
         Scanner sc = new Scanner(System.in);
 
         /*                  DISPLAY CINEMA                  */
@@ -29,22 +29,27 @@ public class Cinema {
         System.out.println("Enter the number of seats in each row:");
         seats = sc.nextInt();
 
+        total_seats = row * seats ;
+
+        String [][] cinema = new String [row+1][seats+1] ;
+
         System.out.println("Cinema:");
-        System.out.print(" ");
 
-        for (int c = 1 ; c < seats+1 ; c++){
-           System.out.print(" "+c);
+        for (int l = 1; l < row+1 ; l++){
+            for (int c = 1; c < seats+1  ; c++) {
+                cinema[0][0] = " " ;
+                cinema[0][c] = " " +Integer.toString(c);
+                cinema[l][0] = Integer.toString(l);
+                cinema [l][c] = " S";
+            }
         }
-        System.out.println();
-
-        do {
-            System.out.print(i);
-            for (int l = 1; l <= row+1 ; l++) {
-                System.out.print(" S");
+        for (int l = 0 ; l < row+1 ; l++){
+            for (int c = 0 ; c < seats+1 ; c++) {
+              System.out.print(cinema[l][c]);
             }
             System.out.println();
-            i++ ;
-        }while (i <row+1);
+        }
+
 
            /*              SELECT A SEAT                    */
 
@@ -54,25 +59,32 @@ public class Cinema {
         System.out.println("Enter a seat number in that row:");
         seat_nb = sc.nextInt();
 
-
-
-         total_seats =  row*seats ;
+        first_half = (row/2)  ;
 
         if(total_seats < 60){
-            income = total_seats * 10 ;
-        }else {
-            if ( row % 2 == 0){
-                 first_half = ((row/2) * seats) * 10 ;
-                 last_half = ((row/2) * seats) * 8 ;
-                 income = first_half + last_half ;
-            }else {
-                 first_half = ((row/2) * seats) * 10 ;
-                 last_half = (((row/2)+1 ) * seats) * 8 ;
-                 income = first_half + last_half ;
+            ticket_price = 10 ;
+        }else{
+            if (row_nb <= first_half){
+                ticket_price = ticket_price = 10  ;
+            }else{
+                ticket_price = 8 ;
             }
         }
 
-        System.out.println("Total income:");
-        System.out.println("$"+income);
+
+
+
+        System.out.println("Ticket price: $"+ticket_price);
+
+        cinema[row_nb] [seat_nb]= " B";
+
+        System.out.println("Cinema:");
+
+        for (int l = 0 ; l < row+1 ; l++){
+            for (int c = 0 ; c < seats+1 ; c++) {
+                System.out.print(cinema[l][c]);
+            }
+            System.out.println();
+        }
 }
 }
