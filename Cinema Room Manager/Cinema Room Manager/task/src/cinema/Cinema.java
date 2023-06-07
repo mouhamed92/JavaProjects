@@ -2,23 +2,19 @@ package cinema;
 
 import java.util.Scanner;
 
+import static java.lang.System.exit;
+
 public class Cinema {
 
     public static void main(String[] args) {
         // Write your code here
 
              /*           Declaration             */
-
-        int i = 1 ;
         int row = 0 ;
         int seats = 0 ;
-        int row_nb = 0 ;
-        int seat_nb = 0 ;
-        int income = 0 ;
-        int first_half = 0;
-        int last_half = 0 ;
+        int count = 0 ;
         int total_seats = 0 ;
-        int ticket_price =0  ;
+
         Scanner sc = new Scanner(System.in);
 
         /*                  DISPLAY CINEMA                  */
@@ -33,25 +29,41 @@ public class Cinema {
 
         String [][] cinema = new String [row+1][seats+1] ;
 
-        System.out.println("Cinema:");
 
-        for (int l = 1; l < row+1 ; l++){
-            for (int c = 1; c < seats+1  ; c++) {
-                cinema[0][0] = " " ;
-                cinema[0][c] = " " +Integer.toString(c);
-                cinema[l][0] = Integer.toString(l);
-                cinema [l][c] = " S";
-            }
-        }
-        for (int l = 0 ; l < row+1 ; l++){
-            for (int c = 0 ; c < seats+1 ; c++) {
-              System.out.print(cinema[l][c]);
-            }
-            System.out.println();
-        }
+        do {
+            System.out.println("1. Show the seats");
+            System.out.println("2. Buy a ticket");
+            System.out.println("0. Exit");
+
+            int choice = sc.nextInt();
 
 
-           /*              SELECT A SEAT                    */
+             switch (choice){
+
+                 case 1 :
+                          displayRoom(cinema,row,seats,count);
+                           count++;
+                    break;
+                 case 2 :
+                          buyTicket(cinema,total_seats,row);
+                         
+                     break;
+                 case 0 :
+                     return  ;
+             }
+
+         }while (true);
+
+}
+
+    private static void buyTicket(String[][] cinema ,int total_seats , int row) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int first_half = 0;
+        int ticket_price =0  ;
+        int row_nb =0 ;
+        int seat_nb =0 ;
 
         System.out.println("Enter a row number:");
         row_nb = sc.nextInt();
@@ -71,20 +83,90 @@ public class Cinema {
             }
         }
 
-
-
-
         System.out.println("Ticket price: $"+ticket_price);
-
         cinema[row_nb] [seat_nb]= " B";
+    }
+
+ /*   private static void displaySeats(String [][] cinema , int row , int seats) {
 
         System.out.println("Cinema:");
 
+        for (int l = 1; l < row+1 ; l++){
+            for (int c = 1; c < seats+1  ; c++) {
+                cinema[0][0] = " " ;
+                cinema[0][c] = " " +Integer.toString(c);
+                cinema[l][0] = Integer.toString(l);
+                cinema [l][c] = " S";
+            }
+        }
         for (int l = 0 ; l < row+1 ; l++){
             for (int c = 0 ; c < seats+1 ; c++) {
                 System.out.print(cinema[l][c]);
             }
             System.out.println();
         }
+    }*/
+
+    private static void displayRoom(String [][] cinema , int row , int seats, int count) {
+
+
+        if(count == 0) {
+
+            System.out.println("Cinema:");
+
+            for (int l = 1; l < row + 1; l++) {
+                for (int c = 1; c < seats + 1; c++) {
+                    cinema[0][0] = " ";
+                    cinema[0][c] = " " + Integer.toString(c);
+                    cinema[l][0] = Integer.toString(l);
+                    cinema[l][c] = " S";
+                }
+            }
+            for (int l = 0; l < row + 1; l++) {
+                for (int c = 0; c < seats + 1; c++) {
+                    System.out.print(cinema[l][c]);
+                }
+                System.out.println();
+            }
+                     count ++ ;
+        }else{
+
+            System.out.println("Cinema:");
+
+            for (int l = 0; l < row + 1; l++) {
+                for (int c = 0; c < seats + 1; c++) {
+                    System.out.print(cinema[l][c]);
+                }
+                System.out.println();
+
+            }
+        }
+    }
 }
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /*  System.out.println("Cinema:");
+
+        for (int l = 0 ; l < row+1 ; l++){
+            for (int c = 0 ; c < seats+1 ; c++) {
+                System.out.print(cinema[l][c]);
+            }
+            System.out.println();
+        }*/

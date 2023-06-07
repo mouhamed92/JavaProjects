@@ -342,5 +342,46 @@ files:
     }
   learner_created: false
 feedback_link: https://hyperskill.org/projects/133/stages/712/implement#comment
-status: Unchecked
+status: Failed
+feedback:
+  message: |-
+    Wrong answer in test #3
+
+    The second line of the seating arrangement should contain &#39;B&#39; symbol.
+
+    Please find below the output of your program during this failed test.
+    Note that the &#39;&gt;&#39; character indicates the beginning of the input line.
+
+    ---
+
+    Enter the number of rows:
+    &gt; 7
+    Enter the number of seats in each row:
+    &gt; 8
+    1. Show the seats
+    2. Buy a ticket
+    0. Exit
+    &gt; 2
+    Enter a row number:
+    &gt; 2
+    Enter a seat number in that row:
+    &gt; 4
+    Ticket price: $10
+    1. Show the seats
+    2. Buy a ticket
+    0. Exit
+    &gt; 1
+    Cinema:
+      1 2 3 4 5 6 7 8
+    1 S S S S S S S S
+    2 S S S S S S S S
+    3 S S S S S S S S
+    4 S S S S S S S S
+    5 S S S S S S S S
+    6 S S S S S S S S
+    7 S S S S S S S S
+    1. Show the seats
+    2. Buy a ticket
+    0. Exit
+  time: "Wed, 07 Jun 2023 08:07:01 UTC"
 record: -1
