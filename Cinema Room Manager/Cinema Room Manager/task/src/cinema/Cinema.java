@@ -2,171 +2,120 @@ package cinema;
 
 import java.util.Scanner;
 
-import static java.lang.System.exit;
-
 public class Cinema {
+    private String[][] cinemaGrid;
+    private int rows;
+    private int seats;
+    private int cinemaSize;
+    private int frontHalf;
+    private int backHalf;
+    private int maxIncome;
+    private int[][] priceGrid;
+
 
     public static void main(String[] args) {
-        // Write your code here
 
-             /*           Declaration             */
-        int row = 0 ;
-        int seats = 0 ;
-        int count = 0 ;
-        int total_seats = 0 ;
-
-        Scanner sc = new Scanner(System.in);
-
-        /*                  DISPLAY CINEMA                  */
+        Scanner input = new Scanner(System.in);
 
         System.out.println("Enter the number of rows:");
-        row = sc.nextInt();
-
+        int rows = Integer.parseInt(input.nextLine());
         System.out.println("Enter the number of seats in each row:");
-        seats = sc.nextInt();
+        int seats = Integer.parseInt(input.nextLine());
 
-        total_seats = row * seats ;
+        Cinema cinema = new Cinema(seats, rows);
 
-        String [][] cinema = new String [row+1][seats+1] ;
+        while (true) {
+            System.out.println();
+            System.out.print("1. Show the seats\n" +
+                    "2. Buy a ticket\n" +
+                    "0. Exit\n");
 
-
-        do {
-            System.out.println("1. Show the seats");
-            System.out.println("2. Buy a ticket");
-            System.out.println("0. Exit");
-
-            int choice = sc.nextInt();
-
-
-             switch (choice){
-
-                 case 1 :
-                          displayRoom(cinema,row,seats,count);
-                           count++;
+            switch (input.nextLine()) {
+                case "0":
+                    return;
+                case "1":
+                    System.out.println();
+                    cinema.printGrid();
                     break;
-                 case 2 :
-                          buyTicket(cinema,total_seats,row);
-                         
-                     break;
-                 case 0 :
-                     return  ;
-             }
-
-         }while (true);
-
-}
-
-    private static void buyTicket(String[][] cinema ,int total_seats , int row) {
-
-        Scanner sc = new Scanner(System.in);
-
-        int first_half = 0;
-        int ticket_price =0  ;
-        int row_nb =0 ;
-        int seat_nb =0 ;
-
-        System.out.println("Enter a row number:");
-        row_nb = sc.nextInt();
-
-        System.out.println("Enter a seat number in that row:");
-        seat_nb = sc.nextInt();
-
-        first_half = (row/2)  ;
-
-        if(total_seats < 60){
-            ticket_price = 10 ;
-        }else{
-            if (row_nb <= first_half){
-                ticket_price = ticket_price = 10  ;
-            }else{
-                ticket_price = 8 ;
+                case "2":
+                    System.out.println();
+                    System.out.println("Enter a row number:");
+                    int wantedRow = Integer.parseInt(input.nextLine());
+                    System.out.println("Enter a seat number in that row:");
+                    int wantedSeat = Integer.parseInt(input.nextLine());
+                    cinema.buySeat(wantedSeat, wantedRow);
+                    break;
+                default:
+                    System.out.println("Unknown option.");
             }
         }
-
-        System.out.println("Ticket price: $"+ticket_price);
-        cinema[row_nb] [seat_nb]= " B";
     }
 
- /*   private static void displaySeats(String [][] cinema , int row , int seats) {
+    public Cinema (int seats, int rows) {
+        this.rows = rows;
+        this.seats = seats;
+        this.cinemaGrid = new String[seats + 1][rows + 1];
+        this.cinemaGrid[0][0] = "\s";
+        this.cinemaSize = seats * rows;
 
+        makePriceGrid(seats, rows);
+
+        //Make headers for seats (x-axis) and rows (y-axis)
+        for (int x = 1; x <= this.seats; x++) {
+            this.cinemaGrid[x][0] = Integer.toString(x);
+        }
+        for (int y = 1; y <= this.rows; y++) {
+            this.cinemaGrid[0][y] = Integer.toString(y);
+        }
+    }
+
+    public void printGrid() {
         System.out.println("Cinema:");
-
-        for (int l = 1; l < row+1 ; l++){
-            for (int c = 1; c < seats+1  ; c++) {
-                cinema[0][0] = " " ;
-                cinema[0][c] = " " +Integer.toString(c);
-                cinema[l][0] = Integer.toString(l);
-                cinema [l][c] = " S";
-            }
-        }
-        for (int l = 0 ; l < row+1 ; l++){
-            for (int c = 0 ; c < seats+1 ; c++) {
-                System.out.print(cinema[l][c]);
-            }
-            System.out.println();
-        }
-    }*/
-
-    private static void displayRoom(String [][] cinema , int row , int seats, int count) {
-
-
-        if(count == 0) {
-
-            System.out.println("Cinema:");
-
-            for (int l = 1; l < row + 1; l++) {
-                for (int c = 1; c < seats + 1; c++) {
-                    cinema[0][0] = " ";
-                    cinema[0][c] = " " + Integer.toString(c);
-                    cinema[l][0] = Integer.toString(l);
-                    cinema[l][c] = " S";
+        for (int y = 0; y <= rows; y++) {
+            for (int x = 0; x <= seats; x++) {
+                String currValue = cinemaGrid[x][y];
+                if (currValue == null) {
+                    currValue = "S";
                 }
-            }
-            for (int l = 0; l < row + 1; l++) {
-                for (int c = 0; c < seats + 1; c++) {
-                    System.out.print(cinema[l][c]);
+                if (x == seats) {
+                    System.out.println(currValue);
+                } else {
+                    System.out.print(currValue + " ");
                 }
-                System.out.println();
-            }
-                     count ++ ;
-        }else{
-
-            System.out.println("Cinema:");
-
-            for (int l = 0; l < row + 1; l++) {
-                for (int c = 0; c < seats + 1; c++) {
-                    System.out.print(cinema[l][c]);
-                }
-                System.out.println();
-
             }
         }
     }
-}
 
+    public void makePriceGrid(int seats, int rows) {
+        frontHalf = rows / 2;
+        backHalf = rows - frontHalf;
+        cinemaSize = seats * rows;
+        priceGrid = new int[seats + 1][rows + 1];
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- /*  System.out.println("Cinema:");
-
-        for (int l = 0 ; l < row+1 ; l++){
-            for (int c = 0 ; c < seats+1 ; c++) {
-                System.out.print(cinema[l][c]);
+        if (cinemaSize <= 60) {
+            for (int y = 1; y <= rows; y++) {
+                for (int x = 1; x <= seats; x++) {
+                    priceGrid[x][y] = 10;
+                }
             }
-            System.out.println();
-        }*/
+            maxIncome = seats * rows * 10;
+        } else {
+            maxIncome = 0;
+            for (int y = 1; y <= rows; y++) {
+                for (int x = 1; x <= seats; x++) {
+                    if (y <= frontHalf) {
+                        priceGrid[x][y] = 10;
+                        maxIncome += 10;
+                    } else {
+                        priceGrid[x][y] = 8;
+                        maxIncome += 8;
+                    }
+                }
+            }
+        }
+    }
+    private void buySeat(int wantedSeat, int wantedRow) {
+        System.out.println("Ticket price: $" + priceGrid[wantedSeat][wantedRow]);
+        cinemaGrid[wantedSeat][wantedRow] = "B";
+    }
+}

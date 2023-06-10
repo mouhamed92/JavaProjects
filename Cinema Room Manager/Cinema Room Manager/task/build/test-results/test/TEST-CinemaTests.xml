@@ -1,98 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CinemaTests" tests="1" skipped="0" failures="1" errors="0" timestamp="2023-06-07T08:07:00" hostname="DESKTOP-ONB4EAO" time="0.58">
+<testsuite name="CinemaTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-06-10T05:47:58" hostname="DESKTOP-ONB4EAO" time="0.532">
   <properties/>
-  <testcase name="start" classname="CinemaTests" time="0.58">
-    <failure message="java.lang.AssertionError: Wrong answer in test #3&#10;&#10;The second line of the seating arrangement should contain 'B' symbol.&#10;&#10;Please find below the output of your program during this failed test.&#10;Note that the '&gt;' character indicates the beginning of the input line.&#10;&#10;---&#10;&#10;Enter the number of rows:&#10;&gt; 7&#10;Enter the number of seats in each row:&#10;&gt; 8&#10;1. Show the seats&#10;2. Buy a ticket&#10;0. Exit&#10;&gt; 2&#10;Enter a row number:&#10;&gt; 2&#10;Enter a seat number in that row:&#10;&gt; 4&#10;Ticket price: $10&#10;1. Show the seats&#10;2. Buy a ticket&#10;0. Exit&#10;&gt; 1&#10;Cinema:&#10;  1 2 3 4 5 6 7 8&#10;1 S S S S S S S S&#10;2 S S S S S S S S&#10;3 S S S S S S S S&#10;4 S S S S S S S S&#10;5 S S S S S S S S&#10;6 S S S S S S S S&#10;7 S S S S S S S S&#10;1. Show the seats&#10;2. Buy a ticket&#10;0. Exit" type="java.lang.AssertionError">java.lang.AssertionError: Wrong answer in test #3
-
-The second line of the seating arrangement should contain 'B' symbol.
-
-Please find below the output of your program during this failed test.
-Note that the '&gt;' character indicates the beginning of the input line.
-
----
-
-Enter the number of rows:
-&gt; 7
-Enter the number of seats in each row:
-&gt; 8
-1. Show the seats
-2. Buy a ticket
-0. Exit
-&gt; 2
-Enter a row number:
-&gt; 2
-Enter a seat number in that row:
-&gt; 4
-Ticket price: $10
-1. Show the seats
-2. Buy a ticket
-0. Exit
-&gt; 1
-Cinema:
-  1 2 3 4 5 6 7 8
-1 S S S S S S S S
-2 S S S S S S S S
-3 S S S S S S S S
-4 S S S S S S S S
-5 S S S S S S S S
-6 S S S S S S S S
-7 S S S S S S S S
-1. Show the seats
-2. Buy a ticket
-0. Exit
-	at org.junit.Assert.fail(Assert.java:89)
-	at org.hyperskill.hstest.stage.StageTest.start(StageTest.java:203)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
-	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
-	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
-	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
-	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.runTestClass(JUnitTestClassExecutor.java:110)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.execute(JUnitTestClassExecutor.java:58)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.execute(JUnitTestClassExecutor.java:38)
-	at org.gradle.api.internal.tasks.testing.junit.AbstractJUnitTestClassProcessor.processTestClass(AbstractJUnitTestClassProcessor.java:62)
-	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:51)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
-	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:94)
-	at jdk.proxy1/jdk.proxy1.$Proxy2.processTestClass(Unknown Source)
-	at org.gradle.api.internal.tasks.testing.worker.TestWorker$2.run(TestWorker.java:176)
-	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:129)
-	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:100)
-	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:60)
-	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
-	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:133)
-	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:71)
-	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
-	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
-</failure>
-  </testcase>
+  <testcase name="start" classname="CinemaTests" time="0.532"/>
   <system-out><![CDATA[?[1;31m
 Start test 1?[0m
 Enter the number of rows:
 > 7
 Enter the number of seats in each row:
 > 8
+
 1. Show the seats
 2. Buy a ticket
 0. Exit
@@ -103,10 +19,12 @@ Enter the number of rows:
 > 7
 Enter the number of seats in each row:
 > 8
+
 1. Show the seats
 2. Buy a ticket
 0. Exit
 > 1
+
 Cinema:
   1 2 3 4 5 6 7 8
 1 S S S S S S S S
@@ -116,6 +34,7 @@ Cinema:
 5 S S S S S S S S
 6 S S S S S S S S
 7 S S S S S S S S
+
 1. Show the seats
 2. Buy a ticket
 0. Exit
@@ -123,14 +42,17 @@ Enter the number of rows:
 > 2
 Enter the number of seats in each row:
 > 2
+
 1. Show the seats
 2. Buy a ticket
 0. Exit
 > 1
+
 Cinema:
   1 2
 1 S S
 2 S S
+
 1. Show the seats
 2. Buy a ticket
 0. Exit
@@ -138,10 +60,12 @@ Enter the number of rows:
 > 9
 Enter the number of seats in each row:
 > 9
+
 1. Show the seats
 2. Buy a ticket
 0. Exit
 > 1
+
 Cinema:
   1 2 3 4 5 6 7 8 9
 1 S S S S S S S S S
@@ -153,6 +77,7 @@ Cinema:
 7 S S S S S S S S S
 8 S S S S S S S S S
 9 S S S S S S S S S
+
 1. Show the seats
 2. Buy a ticket
 0. Exit
@@ -163,28 +88,164 @@ Enter the number of rows:
 > 7
 Enter the number of seats in each row:
 > 8
+
 1. Show the seats
 2. Buy a ticket
 0. Exit
 > 2
+
 Enter a row number:
 > 2
 Enter a seat number in that row:
 > 4
 Ticket price: $10
+
 1. Show the seats
 2. Buy a ticket
 0. Exit
 > 1
+
 Cinema:
   1 2 3 4 5 6 7 8
 1 S S S S S S S S
-2 S S S S S S S S
+2 S S S B S S S S
 3 S S S S S S S S
 4 S S S S S S S S
 5 S S S S S S S S
 6 S S S S S S S S
 7 S S S S S S S S
+
+1. Show the seats
+2. Buy a ticket
+0. Exit
+> 2
+
+Enter a row number:
+> 3
+Enter a seat number in that row:
+> 5
+Ticket price: $10
+
+1. Show the seats
+2. Buy a ticket
+0. Exit
+> 1
+
+Cinema:
+  1 2 3 4 5 6 7 8
+1 S S S S S S S S
+2 S S S B S S S S
+3 S S S S B S S S
+4 S S S S S S S S
+5 S S S S S S S S
+6 S S S S S S S S
+7 S S S S S S S S
+
+1. Show the seats
+2. Buy a ticket
+0. Exit
+?[1;31m
+Start test 4?[0m
+Enter the number of rows:
+> 9
+Enter the number of seats in each row:
+> 9
+
+1. Show the seats
+2. Buy a ticket
+0. Exit
+> 2
+
+Enter a row number:
+> 1
+Enter a seat number in that row:
+> 1
+Ticket price: $10
+
+1. Show the seats
+2. Buy a ticket
+0. Exit
+> 2
+
+Enter a row number:
+> 4
+Enter a seat number in that row:
+> 5
+Ticket price: $10
+
+1. Show the seats
+2. Buy a ticket
+0. Exit
+> 1
+
+Cinema:
+  1 2 3 4 5 6 7 8 9
+1 B S S S S S S S S
+2 S S S S S S S S S
+3 S S S S S S S S S
+4 S S S S B S S S S
+5 S S S S S S S S S
+6 S S S S S S S S S
+7 S S S S S S S S S
+8 S S S S S S S S S
+9 S S S S S S S S S
+
+1. Show the seats
+2. Buy a ticket
+0. Exit
+> 2
+
+Enter a row number:
+> 5
+Enter a seat number in that row:
+> 5
+Ticket price: $8
+
+1. Show the seats
+2. Buy a ticket
+0. Exit
+> 1
+
+Cinema:
+  1 2 3 4 5 6 7 8 9
+1 B S S S S S S S S
+2 S S S S S S S S S
+3 S S S S S S S S S
+4 S S S S B S S S S
+5 S S S S B S S S S
+6 S S S S S S S S S
+7 S S S S S S S S S
+8 S S S S S S S S S
+9 S S S S S S S S S
+
+1. Show the seats
+2. Buy a ticket
+0. Exit
+> 2
+
+Enter a row number:
+> 6
+Enter a seat number in that row:
+> 6
+Ticket price: $8
+
+1. Show the seats
+2. Buy a ticket
+0. Exit
+> 1
+
+Cinema:
+  1 2 3 4 5 6 7 8 9
+1 B S S S S S S S S
+2 S S S S S S S S S
+3 S S S S S S S S S
+4 S S S S B S S S S
+5 S S S S B S S S S
+6 S S S S S B S S S
+7 S S S S S S S S S
+8 S S S S S S S S S
+9 S S S S S S S S S
+
 1. Show the seats
 2. Buy a ticket
 0. Exit
