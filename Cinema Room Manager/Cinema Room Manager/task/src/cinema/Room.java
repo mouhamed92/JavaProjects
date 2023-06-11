@@ -9,6 +9,11 @@ public class Room {
     int seats;
     char [][] arr;
 
+    int tickets = 0 ;
+
+    int income = 0 ;
+
+
     public Room(int rows,int seats){
         this.rows = rows ;
         this.seats = seats ;
@@ -29,8 +34,20 @@ public class Room {
 
 
     void buyTicket(int row,int seat){
+
+        if (row > rows || seat > seats){
+            System.out.println("Wrong input!");
+        }
+        else if(arr[row-1][seat-1] == 'B'){
+            System.out.println("That ticket has already been purchased!");
+            buyTicket(InputUtils.inputRow(),InputUtils.inputSeat());
+        }
+        else{
         arr[row-1][seat-1] = 'B';
-        printPrice(row) ;
+            tickets ++ ;
+            printPrice(row) ;
+        }
+        income = income + (rows * seats <= 60 ? 10 : row <= rows / 2 ? 10 : 8);
     }
 
     void printPrice(int row) {
@@ -38,6 +55,29 @@ public class Room {
     }
 
     int getPrice(int row) {
-        return rows * seats <= 60 ? 10 : row <= row/2 ? 10 : 8 ;
+
+        return rows * seats <= 60 ? 10 : row <= rows / 2 ? 10 : 8;
+    }
+
+    void  statiscs(){
+
+        int total_income = 0 ;
+
+        if(( rows*seats) <= 60){
+            total_income = (rows * seats) * 10 ;
+
+        } else {
+            total_income = (((rows/2) * seats) * 10 ) + (((rows/2)+1)* seats)*8 ;
+        }
+
+
+          float percentage = ((float) tickets / (seats*rows))*100 ;
+
+
+
+           System.out.println("Number of purchased tickets: "+tickets );
+           System.out.printf("Percentage: %.2f%s\n", percentage,"%");
+           System.out.println("Current income: $"+income);
+           System.out.println("Total income: $"+total_income);
     }
 }

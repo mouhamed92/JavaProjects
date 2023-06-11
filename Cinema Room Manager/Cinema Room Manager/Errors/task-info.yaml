@@ -614,6 +614,96 @@ files:
         }
     }
   learner_created: false
+- name: src/cinema/Room.java
+  visible: true
+  text: |
+    package cinema;
+
+    import java.util.Arrays;
+    import java.util.stream.IntStream;
+
+    public class Room {
+
+        int rows ;
+        int seats;
+        char [][] arr;
+
+        public Room(int rows,int seats){
+            this.rows = rows ;
+            this.seats = seats ;
+            this.arr = new char[rows][seats];
+            Arrays.stream(arr).forEach(rowArr->Arrays.fill(rowArr,'S'));
+        }
+
+        void printRoom() {
+            int rowsWithNum = rows + 1;
+            int seatsWithNum = seats + 1;
+            System.out.print("\nCinema:\n ");
+            IntStream.range(1, rowsWithNum * seatsWithNum)
+                    .forEach(i -> System.out.printf(" %s",
+                            i < seatsWithNum ? i : (i % seatsWithNum == 0 ? "\n" + i / seatsWithNum : arr[i / seatsWithNum - 1][i % seatsWithNum - 1])));
+            System.out.println("\n");
+        }
+
+
+
+        void buyTicket(int row,int seat){
+            arr[row-1][seat-1] = 'B';
+            printPrice(row) ;
+        }
+
+        void printPrice(int row) {
+            System.out.println("Ticket price: $" + getPrice(row));
+        }
+
+        int getPrice(int row) {
+            return rows * seats <= 60 ? 10 : row <= row/2 ? 10 : 8 ;
+        }
+    }
+  learner_created: true
+- name: src/cinema/InputUtils.java
+  visible: true
+  text: |
+    package cinema;
+
+    import java.util.Scanner;
+
+    public interface InputUtils {
+
+        Scanner scanner = new Scanner(System.in);
+
+        static int inputRows(){
+            System.out.println("Enter the number of rows:");
+            return scanner.nextInt();
+        }
+
+        static int inputSeats() {
+            System.out.println("Enter the number of seats in each row:");
+            return scanner.nextInt();
+        }
+
+        static int inputRow() {
+            System.out.println("Enter a row number:");
+            return scanner.nextInt();
+        }
+
+        static int inputSeat() {
+            System.out.println("Enter a seat number in that row:");
+            return scanner.nextInt();
+        }
+
+        static int inputMenuOption() {
+            System.out.println("1. Show the seats\n" +
+                    "2. Buy a ticket\n" +
+                    "0. Exit");
+            return scanner.nextInt();
+        }
+    }
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/133/stages/713/implement#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Well done! You've finished the project. Select a new project on <a href="https://hyperskill.org/projects">Hyperskill</a>
+    to continue learning.
+  time: "Sun, 11 Jun 2023 15:17:15 UTC"
 record: -1
