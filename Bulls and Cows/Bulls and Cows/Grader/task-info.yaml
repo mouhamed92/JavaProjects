@@ -177,6 +177,15 @@ files:
         }
     }
   learner_created: false
+- name: src/bullscows/Game.java
+  visible: true
+  learner_created: true
+- name: src/bullscows/Inputs.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/53/stages/288/implement#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Tue, 13 Jun 2023 14:44:25 UTC"
+record: 2

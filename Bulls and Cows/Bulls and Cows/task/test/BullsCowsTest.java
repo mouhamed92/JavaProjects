@@ -4,71 +4,96 @@ import org.hyperskill.hstest.stage.StageTest;
 import org.hyperskill.hstest.testcase.CheckResult;
 import org.hyperskill.hstest.testing.TestedProgram;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.hyperskill.hstest.testing.expect.Expectation.expect;
 
 public class BullsCowsTest extends StageTest<String> {
+
+    // basic test case
     @DynamicTestingMethod
-    CheckResult test() {
+    CheckResult test1() {
         TestedProgram main = new TestedProgram();
+        main.start();
+        String output = main.execute("4").toLowerCase().trim();
 
-        boolean turn = false, answer = false;
-        int turnsNumber = 0;
+        return outputCheck(output, 4);
+    }
 
-        String output = main.start(); // got a game log
-        String[] reply = output.split("\n");
+    @DynamicTestingMethod
+    CheckResult test2() {
+        TestedProgram main = new TestedProgram();
+        main.start();
+        String output = main.execute("1").toLowerCase().trim();
 
-        if (reply.length == 0) {
-            return CheckResult.wrong("Your output should not be empty!");
-        }
+        return outputCheck(output, 1);
+    }
 
-        // started verifying process
-        String item = reply[0];
-        if (!item.contains("****") || item.contains("*****")) {
-            return CheckResult.wrong("The first line has an incorrect format.");
-        }
+    // test of incorrect input
+    @DynamicTestingMethod
+    CheckResult test4() {
+        TestedProgram main = new TestedProgram();
+        main.start();
+        String output = main.execute("11").toLowerCase().trim();
 
-        for (int n = 1; n < reply.length - 1; n++) {
-            if (reply[n].toLowerCase().startsWith("turn")) {
-                if (turn || answer) {
-                    return CheckResult.wrong("The order of the steps in the game is broken 1.");
-                }
-                turn = true;
+        return outputCheck(output, 11);
+    }
 
-            } else if (findFourDigitsWithRegExp(reply[n])) {
-                if (!turn || answer) {
-                    return CheckResult.wrong("The order of the steps in the game is broken 2.");
-                }
-                answer = true;
-            } else if (findPairsOfBullsAndCows(reply[n])) {
-                if (!turn || !answer) {
-                    return CheckResult.wrong("The order of the steps in the game is broken 3.");
-                }
-                turn = false;
-                answer = false;
-                turnsNumber++;
+    @DynamicTestingMethod
+    CheckResult test5() {
+        TestedProgram main = new TestedProgram();
+        main.start();
+        String output = main.execute("6").toLowerCase().trim();
+
+        return outputCheck(output, 6);
+    }
+
+    @DynamicTestingMethod
+    CheckResult test6() {
+        TestedProgram main = new TestedProgram();
+        main.start();
+        String output = main.execute("3").toLowerCase().trim();
+
+        return outputCheck(output, 3);
+    }
+
+
+    CheckResult outputCheck(String source, int length) {
+
+        if (length > 10) {
+            if (source.toLowerCase().contains("error")) {
+                return CheckResult.correct();
+            } else {
+                return CheckResult.wrong("An error message expected with input " +
+                        "\"" + length + "\"");
             }
         }
-        if (turnsNumber == 0) {
-            return CheckResult.wrong("The game log should contain at least two turns.");
+
+        List<Integer> integers = expect(source).toContain(1).integers();
+        source = "" + integers.get(0);
+
+        if (source.length() != length) {
+            return CheckResult.wrong("The output number of your program has " +
+                    "an incorrect length (found " + source.length() + ")");
         }
-        if (!findFourDigitsWithRegExp(reply[reply.length - 1])) {
-            return CheckResult.wrong("The last string is incorrect.");
+
+        List<Integer> temp = stringToArrayOfNumbers(source);
+        temp = new ArrayList<>(new LinkedHashSet<>(temp));
+
+        if (temp.toArray().length != source.length()) {
+            return CheckResult.wrong("Digits in the generated number are not unique.");
         }
 
         return CheckResult.correct();
     }
 
-    boolean findFourDigitsWithRegExp(String userString) {
-        Pattern fourDigitsPattern = Pattern.compile("\\b\\d{4}\\b");
-        Matcher fourDigitsMatcher = fourDigitsPattern.matcher(userString);
-        return fourDigitsMatcher.find();
-
-    }
-
-    boolean findPairsOfBullsAndCows(String userString) {
-        Pattern pairPattern = Pattern.compile("(\\b\\d (cow|bull))|None\\b");
-        Matcher pairMatcher = pairPattern.matcher(userString);
-        return pairMatcher.find();
+    private static List<Integer> stringToArrayOfNumbers(String array) {
+        return Arrays.stream(array.split(""))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 }
