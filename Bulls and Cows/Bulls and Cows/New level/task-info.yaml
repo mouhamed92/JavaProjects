@@ -308,6 +308,116 @@ files:
         }
     }
   learner_created: false
+- name: src/bullscows/Inputs.java
+  visible: true
+  text: |
+    package bullscows;
+
+    import java.util.Scanner;
+
+    public class Inputs {
+
+         Scanner sc = new Scanner(System.in);
+        public  int inputNumber(){
+            return sc.nextInt() ;
+        }
+    }
+  learner_created: true
+- name: src/bullscows/Game.java
+  visible: true
+  text: |
+    package bullscows;
+
+    import java.util.Random;
+
+    public class Game {
+
+
+        int n ;
+        String str1 ;
+        String str2 ;
+        Inputs inputs = new Inputs();
+
+
+        String generateNumber(int n){
+
+            String randomNumber = "";
+
+            while (randomNumber.length() < n) {
+
+                Random random = new Random();
+
+                long randomN = random.nextLong() % 1_000_000_000_0L;
+
+                if (randomN < 0) {
+                    randomN *= -1;
+                }
+                String rand = String.format("%010d", randomN);
+
+
+                for (int i = 0; i < rand.length(); i++) {
+
+                    if (randomNumber.length() < n && !randomNumber.contains(String.valueOf(rand.charAt(i)))) {
+
+                        randomNumber += rand.charAt(i);
+                    }
+                }
+            }
+               return randomNumber ;
+        }
+
+
+        void guessNumber(String SecrtN){
+            int cows = 0 ;
+            int bulls = 0 ;
+            int turn = 1 ;
+
+            System.out.println("Okay, let's start a game!");
+
+            str2 = SecrtN;
+
+            do {
+                cows = 0 ;
+                bulls = 0 ;
+                System.out.println("Turn "+turn+":");
+                n = inputs.inputNumber();
+                str1 = Integer.toString(n);
+
+                for (int i = 0; i < str1.length(); i++) {
+                    for (int j = 0; j < str2.length(); j++) {
+                        if (str1.charAt(i) == str2.charAt(j)) {
+                            if (i == j) {
+                                bulls++;
+                            }else {
+                                cows++ ;
+                            }
+                        }
+                    }
+                }
+                display(cows, bulls);
+                turn++;
+            }while (bulls < str1.length());
+            System.out.println("Congratulations! You guessed the secret code.");
+
+        }
+
+        void display(int cows , int bulls){
+
+            if (cows == 0 && bulls == 0){
+                System.out.println("Grade: None" );
+            }else if (cows > 0 && bulls == 0){
+                System.out.println("Grade: "+ cows +" cow(s).");
+            } else if (cows == 0 && bulls > 0) {
+                System.out.println("Grade :"+ bulls +" bull(s).");
+            }else {
+                System.out.println("Grade: "+bulls +" bull(s) and "+ cows +" cow(s)");
+            }
+
+        }
+
+
+    }
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/5434#comment
 status: Unchecked
 record: -1

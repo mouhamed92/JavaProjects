@@ -17,7 +17,15 @@ public class Game {
 
         while (randomNumber.length() < n) {
 
-            String rand = String.valueOf(System.nanoTime());
+            Random random = new Random();
+
+            long randomN = random.nextLong() % 1_000_000_000_0L;
+
+            if (randomN < 0) {
+                randomN *= -1;
+            }
+            String rand = String.format("%010d", randomN);
+
 
             for (int i = 0; i < rand.length(); i++) {
 
