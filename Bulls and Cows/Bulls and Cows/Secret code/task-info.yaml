@@ -189,6 +189,26 @@ files:
 
     }
   learner_created: true
-feedback_link: https://hyperskill.org/projects/53/stages/289/implement#comment
-status: Unchecked
-record: -1
+feedback_link: https://hyperskill.org/learn/step/5431#comment
+status: Failed
+feedback:
+  message: |-
+    Presentation error in test #1
+
+    The following output contains wrong number of integers (expected to be equal to 1, found 2):
+    4951
+    okay, let&#39;s start a game!
+    turn 1:
+
+    Please find below the output of your program during this failed test.
+    Note that the &#39;&gt;&#39; character indicates the beginning of the input line.
+
+    ---
+
+    Please, enter the secret code&#39;s length:
+    &gt; 4
+    4951
+    Okay, let&#39;s start a game!
+    Turn 1:
+  time: "Thu, 15 Jun 2023 11:52:56 UTC"
+record: 3

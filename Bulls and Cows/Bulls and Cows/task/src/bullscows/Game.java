@@ -4,50 +4,77 @@ import java.util.Random;
 
 public class Game {
 
-    int secretN = 0 ;
-    int n = 0 ;
+
+    int n ;
     String str1 ;
     String str2 ;
     Inputs inputs = new Inputs();
 
 
-    public Game(int secretN) {
-        this.secretN = secretN ;
-    }
+    String generateNumber(int n){
 
+        String randomNumber = "";
 
-    void guessNumber(){
-        int cows = 0 ;
-        int bulls = 0 ;
-        n = inputs.inputNumber();
-        str1 = Integer.toString(n);
-        str2 = Integer.toString(secretN);
+        while (randomNumber.length() < n) {
 
-        for (int i = 0 ; i < str1.length() ; i++){
-            for (int j = 0 ; j < str2.length() ; j++){
-                if(str1.charAt(i) == str2.charAt(j)){
-                   cows++ ;
-                   if(i==j){
-                       cows-- ;
-                       bulls++;
-                   }
+            String rand = String.valueOf(System.nanoTime());
+
+            for (int i = 0; i < rand.length(); i++) {
+
+                if (randomNumber.length() < n && !randomNumber.contains(String.valueOf(rand.charAt(i)))) {
+
+                    randomNumber += rand.charAt(i);
                 }
             }
         }
+           return randomNumber ;
+    }
 
-         display(cows , bulls);
+
+    void guessNumber(String SecrtN){
+        int cows = 0 ;
+        int bulls = 0 ;
+        int turn = 1 ;
+
+        System.out.println("Okay, let's start a game!");
+
+        str2 = SecrtN;
+
+        do {
+            cows = 0 ;
+            bulls = 0 ;
+            System.out.println("Turn "+turn+":");
+            n = inputs.inputNumber();
+            str1 = Integer.toString(n);
+
+            for (int i = 0; i < str1.length(); i++) {
+                for (int j = 0; j < str2.length(); j++) {
+                    if (str1.charAt(i) == str2.charAt(j)) {
+                        if (i == j) {
+                            bulls++;
+                        }else {
+                            cows++ ;
+                        }
+                    }
+                }
+            }
+            display(cows, bulls);
+            turn++;
+        }while (bulls < str1.length());
+        System.out.println("Congratulations! You guessed the secret code.");
+
     }
 
     void display(int cows , int bulls){
 
         if (cows == 0 && bulls == 0){
-            System.out.println("Grade: None. The secret code is "+secretN+ "." );
+            System.out.println("Grade: None" );
         }else if (cows > 0 && bulls == 0){
-            System.out.println("Grade: "+ cows +" cow(s). The secret code is "+ secretN+".");
+            System.out.println("Grade: "+ cows +" cow(s).");
         } else if (cows == 0 && bulls > 0) {
-            System.out.println("Grade :"+ bulls +" bull(s). The secret code is "+ secretN+".");
+            System.out.println("Grade :"+ bulls +" bull(s).");
         }else {
-            System.out.println("Grade: "+ cows +" bull(s) and "+ bulls +" cow(s). The secret code is "+ secretN+".");
+            System.out.println("Grade: "+bulls +" bull(s) and "+ cows +" cow(s)");
         }
 
     }
