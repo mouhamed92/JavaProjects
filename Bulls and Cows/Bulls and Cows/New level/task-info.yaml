@@ -418,6 +418,12 @@ files:
 
     }
   learner_created: true
+- name: src/bullscows/Grade.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/5434#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Sat, 17 Jun 2023 10:40:03 UTC"
 record: -1
