@@ -3,20 +3,39 @@ package bullscows;
 import java.util.Random;
 import java.util.Scanner;
 
+import static java.lang.System.exit;
+
 
 class Game {
     int turn = 1;
     String secret;
 
+    private static int readNumber() {
+        int number = 0;
+        Scanner scanner = new Scanner(System.in);
+
+        if (scanner.hasNextInt()) {
+            number = scanner.nextInt();
+        } else {
+            String userInput = scanner.next();
+            System.out.printf("Error: %s isn't a valid number.", userInput);
+            System.out.println();
+            System.exit(1);
+        }
+
+        return number;
+    }
+
     private static int getSecretLength() {
         System.out.println("Input the length of the secret code:");
-        Scanner scanner = new Scanner(System.in);
-        int secretLength = scanner.nextInt();
+        int secretLength = readNumber();
 
-        while (secretLength > 36) {
+        if (secretLength > 36) {
             System.out.println("Error: secret length cannot be greater than 36");
-            System.out.println("Input the length of the secret code:");
-            secretLength = scanner.nextInt();
+            System.exit(1);
+        } else if (secretLength < 1) {
+            System.out.println("Error: secret length cannot be less than 1");
+            System.exit(1);
         }
 
         return secretLength;
@@ -24,18 +43,15 @@ class Game {
 
     private static int getSymbolsRangeLength(int secretLength) {
         System.out.println("Input the number of possible symbols in the code:");
-        Scanner scanner = new Scanner(System.in);
-        int symbolsRangeLength = scanner.nextInt();
+        int symbolsRangeLength = readNumber();
 
-        while (symbolsRangeLength > 36 || symbolsRangeLength < secretLength) {
-            if (symbolsRangeLength > 36) {
-                System.out.println("Error: symbols range length cannot be greater than 36");
-            } else {
-                System.out.println("Error: symbols range length cannot be smaller than secret length");
-            }
-            System.out.println("Input the number of possible symbols in the code:");
-            symbolsRangeLength = scanner.nextInt();
+        if (symbolsRangeLength > 36) {
+            System.out.println("Error: maximum number of possible symbols in the code is 36 (0-9, a-z).");
+            System.exit(1);
+        } else if (symbolsRangeLength < 1) {
+            System.out.println("Error: symbols range length cannot be less than 1");
         }
+
         return symbolsRangeLength;
     }
 
@@ -50,7 +66,13 @@ class Game {
     private static String getSecret(int secretLength, int symbolsRangeLength) {
         assert secretLength > 0 && secretLength <= 36;
         assert symbolsRangeLength > 0 && symbolsRangeLength <= 36;
-        assert symbolsRangeLength > secretLength;
+
+        if (symbolsRangeLength < secretLength) {
+            String message = "Error: it's not possible to generate a code with a length of %s with %s unique symbols.";
+            System.out.printf(message, secretLength, symbolsRangeLength);
+            System.out.println();
+            System.exit(1);
+        }
 
         Random random = new Random();
         StringBuilder secret = new StringBuilder(secretLength);

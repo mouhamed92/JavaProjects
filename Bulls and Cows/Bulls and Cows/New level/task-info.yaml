@@ -308,21 +308,6 @@ files:
         }
     }
   learner_created: false
-- name: src/bullscows/Inputs.java
-  visible: true
-  text: |
-    package bullscows;
-
-    import java.util.Scanner;
-
-    public class Inputs {
-
-         Scanner sc = new Scanner(System.in);
-        public  int inputNumber(){
-            return sc.nextInt() ;
-        }
-    }
-  learner_created: true
 - name: src/bullscows/Game.java
   visible: true
   text: |
@@ -426,4 +411,4 @@ status: Solved
 feedback:
   message: Congratulations!
   time: "Sat, 17 Jun 2023 10:40:03 UTC"
-record: -1
+record: 6
