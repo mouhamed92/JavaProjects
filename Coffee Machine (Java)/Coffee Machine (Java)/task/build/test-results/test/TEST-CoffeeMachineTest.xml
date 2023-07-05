@@ -1,7 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CoffeeMachineTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-07-04T12:06:33" hostname="DESKTOP-ONB4EAO" time="0.549">
+<testsuite name="CoffeeMachineTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2023-07-05T06:49:54" hostname="DESKTOP-ONB4EAO" time="0.252">
   <properties/>
-  <testcase name="start" classname="CoffeeMachineTest" time="0.549"/>
+  <testcase name="start" classname="CoffeeMachineTest" time="0.252">
+    <failure message="java.lang.AssertionError: Error in test #1&#10;&#10;Program ran out of input. You tried to read more than expected.&#10;&#10;Please find below the output of your program during this failed test.&#10;Note that the '&gt;' character indicates the beginning of the input line.&#10;&#10;---&#10;&#10;The coffee machine has:&#10;400 ml of water&#10;540 ml of milk&#10;120 g of coffee beans&#10;9 disposable cups&#10;$550 of money&#10;Write action (buy, fill, take,exit): &#10;&gt; take&#10;I gave you $550&#10;The coffee machine has:&#10;400 ml of water&#10;540 ml of milk&#10;120 g of coffee beans&#10;9 disposable cups&#10;$0 of money&#10;Write action (buy, fill, take,exit):" type="java.lang.AssertionError">java.lang.AssertionError: Error in test #1
+
+Program ran out of input. You tried to read more than expected.
+
+Please find below the output of your program during this failed test.
+Note that the '&gt;' character indicates the beginning of the input line.
+
+---
+
+The coffee machine has:
+400 ml of water
+540 ml of milk
+120 g of coffee beans
+9 disposable cups
+$550 of money
+Write action (buy, fill, take,exit): 
+&gt; take
+I gave you $550
+The coffee machine has:
+400 ml of water
+540 ml of milk
+120 g of coffee beans
+9 disposable cups
+$0 of money
+Write action (buy, fill, take,exit):
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.hyperskill.hstest.stage.StageTest.start(StageTest.java:203)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
+	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.runTestClass(JUnitTestClassExecutor.java:110)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.execute(JUnitTestClassExecutor.java:58)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.execute(JUnitTestClassExecutor.java:38)
+	at org.gradle.api.internal.tasks.testing.junit.AbstractJUnitTestClassProcessor.processTestClass(AbstractJUnitTestClassProcessor.java:62)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:51)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:94)
+	at jdk.proxy1/jdk.proxy1.$Proxy2.processTestClass(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker$2.run(TestWorker.java:176)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:129)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:100)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:60)
+	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:133)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:71)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
+</failure>
+  </testcase>
   <system-out><![CDATA[?[1;31m
 Start test 1?[0m
 The coffee machine has:
@@ -10,7 +82,7 @@ The coffee machine has:
 120 g of coffee beans
 9 disposable cups
 $550 of money
-Write action (buy, fill, take): 
+Write action (buy, fill, take,exit): 
 > take
 I gave you $550
 The coffee machine has:
@@ -19,84 +91,7 @@ The coffee machine has:
 120 g of coffee beans
 9 disposable cups
 $0 of money
-?[1;31m
-Start test 2?[0m
-The coffee machine has:
-400 ml of water
-540 ml of milk
-120 g of coffee beans
-9 disposable cups
-$550 of money
-Write action (buy, fill, take): 
-> buy
-What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino: 
-> 1
-The coffee machine has:
-150 ml of water
-540 ml of milk
-104 g of coffee beans
-8 disposable cups
-$554 of money
-?[1;31m
-Start test 3?[0m
-The coffee machine has:
-400 ml of water
-540 ml of milk
-120 g of coffee beans
-9 disposable cups
-$550 of money
-Write action (buy, fill, take): 
-> buy
-What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino: 
-> 2
-The coffee machine has:
-50 ml of water
-465 ml of milk
-100 g of coffee beans
-8 disposable cups
-$557 of money
-?[1;31m
-Start test 4?[0m
-The coffee machine has:
-400 ml of water
-540 ml of milk
-120 g of coffee beans
-9 disposable cups
-$550 of money
-Write action (buy, fill, take): 
-> buy
-What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino: 
-> 3
-The coffee machine has:
-200 ml of water
-440 ml of milk
-108 g of coffee beans
-8 disposable cups
-$556 of money
-?[1;31m
-Start test 5?[0m
-The coffee machine has:
-400 ml of water
-540 ml of milk
-120 g of coffee beans
-9 disposable cups
-$550 of money
-Write action (buy, fill, take): 
-> fill
-Write how many ml of water you want to add: 
-> 2001
-Write how many ml of milk you want to add: 
-> 510
-Write how many grams of coffee beans you want to add: 
-> 101
-Write how many disposable cups you want to add: 
-> 21
-The coffee machine has:
-2401 ml of water
-1050 ml of milk
-221 g of coffee beans
-30 disposable cups
-$550 of money
+Write action (buy, fill, take,exit): 
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

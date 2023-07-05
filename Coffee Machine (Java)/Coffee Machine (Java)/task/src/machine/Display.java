@@ -2,11 +2,12 @@ package machine;
 
 import java.util.Scanner;
 
+import static machine.CoffeeMachine.*;
+
 public class Display {
 
-    Scanner sc = new Scanner(System.in);
 
-    public void dispplayState(int water,int milk,int coffeeBeans, int disposableCups,int money){
+    public static void dispplayState(){
 
         String formattedString = String.format("The coffee machine has:%n" +
                 "%d ml of water%n" +
@@ -18,10 +19,10 @@ public class Display {
         System.out.println(formattedString);
     }
 
-    public String displayMenu(){
-
+    public static String displayMenu(){
+        Scanner sc = new Scanner(System.in);
         String choice ;
-        System.out.println("Write action (buy, fill, take): ");
+        System.out.println("Write action (buy, fill, take,exit): ");
         choice  = sc.nextLine();
         return choice ;
 

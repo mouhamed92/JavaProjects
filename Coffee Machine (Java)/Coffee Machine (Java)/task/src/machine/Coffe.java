@@ -1,3 +1,4 @@
+/*
 package machine;
 
 import java.util.*;
@@ -57,3 +58,4 @@ public class Coffe {
     }
 
 }
+*/

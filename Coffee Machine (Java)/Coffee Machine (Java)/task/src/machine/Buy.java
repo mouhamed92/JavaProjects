@@ -1,16 +1,12 @@
 package machine;
 
 import java.util.Scanner;
-
+import static machine.CoffeeMachine.*;
 public class Buy {
 
-    Scanner sc = new Scanner(System.in);
-    Display display = new Display();
-    public Buy() {
-    }
 
-    public void buyCoffe(int water,int milk,int coffeeBeans,int disposableCups,int money){
-
+    public static void buyCoffe(){
+        Scanner sc = new Scanner(System.in);
         System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino: ");
         int coffeType = sc.nextInt();
 
@@ -40,6 +36,6 @@ public class Buy {
                 break;
         }
 
-        display.dispplayState(water,milk,coffeeBeans,disposableCups,money);
+       Display.dispplayState();
     }
 }

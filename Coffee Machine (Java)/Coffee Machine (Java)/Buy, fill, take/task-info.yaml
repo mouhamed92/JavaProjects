@@ -436,8 +436,5 @@ files:
   visible: true
   learner_created: true
 feedback_link: https://hyperskill.org/learn/step/5332#comment
-status: Solved
-feedback:
-  message: Congratulations!
-  time: "Tue, 04 Jul 2023 12:06:34 UTC"
-record: -1
+status: Failed
+record: 4
